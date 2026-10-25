@@ -1,6 +1,8 @@
 using System;
+using System.Data.Common;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -11,25 +13,13 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetAxisRaw("Horizontal") == 1f || Input.GetKeyDown(KeyCode.D))
+        Vector3 move = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
+        transform.position += move * speed * Time.deltaTime;
+        Vector3 direction = move.normalized;
+
+        if (move != Vector3.zero)
         {
-            print("right");
-            player.transform.position += new Vector3(speed * Time.deltaTime, 0);
-        }
-        else if (Input.GetAxisRaw("Horizontal") == -1f || Input.GetKeyDown(KeyCode.A))
-        {
-            print("Left");
-            player.transform.position += new Vector3(-speed * Time.deltaTime, 0);
-        }
-        if (Input.GetAxisRaw("Vertical") == 1f || Input.GetKeyDown(KeyCode.W))
-        {
-            print("Up");
-            player.transform.position += new Vector3(0, speed * Time.deltaTime);
-        }
-        else if (Input.GetAxisRaw("Vertical") == -1f || Input.GetKeyDown(KeyCode.S))
-        {
-            print("Down");
-            player.transform.position += new Vector3(0, -speed * Time.deltaTime);
+            transform.up = direction;
         }
     } 
 }
