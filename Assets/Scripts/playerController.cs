@@ -1,11 +1,4 @@
-using System;
-using System.Data.Common;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Rendering.Universal;
 
 public class playerController : MonoBehaviour
 {
